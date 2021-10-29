@@ -39,8 +39,7 @@ Date ParseDateFromString(string line) {
   int year, month, day;
   char delim1, delim2;
   input >> year >> delim1 >> month >> delim2 >> day;
-  if (!input || delim1 != '-' 
-    || delim2 != '-' || input.peek() != EOF) {
+  if (!input || delim1 != '-' || delim2 != '-' || input.peek() != EOF) {
     throw runtime_error("Wrong date format: " + line);
   }
   return Date(year, month, day);
@@ -164,7 +163,7 @@ private:
   void exec_find(stringstream& input) {
     string date_line;
 
-    getline(input, date_line, ' ');
+    input >> date_line;
 
     Date date = ParseDateFromString(date_line);
 
