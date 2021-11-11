@@ -8,7 +8,7 @@ pair<RandomIt, RandomIt> FindStartsWith(
     RandomIt range_begin, RandomIt range_end,
     string prefix) {
     auto first_not_less = lower_bound(range_begin, range_end, prefix);
-    ++prefix[prefix.length() - 1];
+    prefix[prefix.length() - 1] += 1
     auto first_greater = lower_bound(range_begin, range_end, prefix);
 
     if (first_not_less == first_greater)
@@ -16,9 +16,7 @@ pair<RandomIt, RandomIt> FindStartsWith(
 
     return make_pair(first_not_less, first_greater);
 }
-int
-
- main() {
+int main() {
   const vector<string> sorted_strings = {"moscow", "motovilikha", "murmansk"};
   
   const auto mo_result =
