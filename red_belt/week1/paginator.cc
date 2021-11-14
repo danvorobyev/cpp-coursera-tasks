@@ -30,8 +30,11 @@ template <typename Iterator>
 class Paginator {
 public:
   Paginator(Iterator begin, Iterator end, size_t page_size) {
-    for (auto it = begin; it != end; it = next(it, min(page_size, static_cast<size_t>(end - it)))) {
-      page_ranges.emplace_back(it, next(it, min(page_size, static_cast<size_t>(end - it))));
+    for (auto page_start_it = begin; page_start_it != end;) {
+      size_t current_page_size =  min(page_size, static_cast<size_t>(distance(page_start_it, end)));
+      auto page_end_it = next(page_start_it, current_page_size);
+      page_ranges.emplace_back(page_start_it, page_end_it);
+      page_start_it = page_end_it;
     }
   }
 
