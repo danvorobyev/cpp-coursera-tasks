@@ -18,7 +18,7 @@ public:
   Iterator end() const { return last; }
 
   size_t size() const {
-    return last - first;
+    return distance(first, last);
   }
 
 private:
